@@ -1,0 +1,41 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			Ionic Social Login
+		</ion-title>
+    <ion-buttons end>
+</ion-buttons>
+
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	
+  <button ion-button (click)="login('facebook')" *ngIf="!provider.loggedin"><ion-icon name="logo-facebook"></ion-icon>&nbsp;Login Facebook</button>
+  <button ion-button (click)="login('google')" *ngIf="!provider.loggedin"><ion-icon name="logo-google"></ion-icon>&nbsp;Login Google</button>
+  
+
+  <ion-card *ngIf="provider.loggedin">
+    <img src="{{ provider.profilePicture }}"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{provider.name}}
+        </ion-card-title>
+      <p style="text-align: center">
+        {{provider.email}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <button ion-button (click)="logout()" *ngIf="provider.loggedin">Logout</button>
+
+  <p>Enter your nickname for chatting</p>
+  
+  <ion-item>
+    <ion-label floating>Nickname</ion-label>
+    <ion-input type="text" [(ngModel)]="username"></ion-input>
+  </ion-item>
+  <button ion-button block outline (click)="loginUser()" ><ion-icon name="chatbubbles"></ion-icon>&nbsp;Enter Chat Room</button>
+
+</ion-content>
+
